@@ -33,6 +33,8 @@ for epoch in range(epochs):
     for i in range(len(X_train)):
         # Apprentissage par rétropropagation pour chaque point
         retroPropagate(X_train[i], y_train[i], Weights, alpha=0.1)
+        r = propagate(X_train[i], Weights)[-1]
+        print(f"Input: {X_train[i]}, Output: {r}, Expected: {y_train[i]}")
 
 print("Entraînement terminé avec succès")
 
