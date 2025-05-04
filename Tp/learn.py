@@ -18,7 +18,7 @@ for epoch in range(epochs):
     for i in range(len(X_train)):
         retroPropagate(X_train[i], y_train[i], Weights, alpha=0.1)
 
-with open("data1_with_predictions.txt", "w") as f_out:
+with open("resultat.txt", "w") as f_out:
     vase_points = []
     noise_points = []
 
