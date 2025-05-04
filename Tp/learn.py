@@ -1,15 +1,12 @@
 import numpy as np
 from mlp2 import initializer_weights, retroPropagate, propagate
+import matplotlib.pyplot as plt
 
-data = np.loadtxt("data.txt")
-A = data[:, :-1]
-B = data[:, -1:]
+train_data = np.loadtxt("data.txt")
 
-Weights = initializer_weights()
-
-for i in range(len(A)):
-    for _ in range(2500):
-        retroPropagate(A[i], B[i], Weights, alpha=0.1)
-
-    r = propagate(A[i], Weights)[-1]
-    print(f"Input: {A[i]}, Output: {r}, Expected: {B[i]}")
+X_train = train_data[:, :-1]   
+y_train = train_data[:, -1:]
+indices = np.arange(len(X_train))  
+np.random.shuffle(indices)        
+X_train = X_train[indices]
+y_train = y_train[indices]
