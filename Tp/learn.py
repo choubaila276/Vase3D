@@ -19,14 +19,12 @@ for epoch in range(epochs):
         retroPropagate(X_train[i], y_train[i], Weights, alpha=0.1)
 
 with open("data1_with_predictions.txt", "w") as f_out:
+    vase_points = []
+    noise_points = []
 
-vase_points = []
-noise_points = []
-
-for i in range(len(X_test)):
-    prediction = propagate(X_test[i], Weights)[-1]
-    predicted_label = 1 if prediction >= 0.5 else 0
-
+    for i in range(len(X_test)):
+        prediction = propagate(X_test[i], Weights)[-1]
+        predicted_label = 1 if prediction >= 0.5 else 0
 
         line = " ".join(map(str, X_test[i])) + f" {predicted_label}\n"
         f_out.write(line)
@@ -53,9 +51,6 @@ if len(noise_points) > 0:
 ax.set_title("Classification des points du vase en 3D")
 ax.legend()
 plt.show()
-
-
-
 
         
 
