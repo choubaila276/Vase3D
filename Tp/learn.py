@@ -33,6 +33,26 @@ for i in range(len(X_test)):
         noise_points.append(X_test[i])
 
 
+vase_points = np.array(vase_points)
+noise_points = np.array(noise_points)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+if len(vase_points) > 0:
+    ax.scatter(vase_points[:, 0], vase_points[:, 1], vase_points[:, 2],
+               c='red', label='Intérieur du vase', s=1)
+
+if len(noise_points) > 0:
+    ax.scatter(noise_points[:, 0], noise_points[:, 1], noise_points[:, 2],
+               c='blue', label='Bruit', s=1)
+
+ax.set_title("Classification des points du vase en 3D")
+ax.legend()
+plt.show()
+
+
+
 
         
 
