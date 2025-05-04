@@ -18,20 +18,23 @@ for epoch in range(epochs):
     for i in range(len(X_train)):
         retroPropagate(X_train[i], y_train[i], Weights, alpha=0.1)
 
+with open("data1_with_predictions.txt", "w") as f_out:
+
 vase_points = []
 noise_points = []
 
 for i in range(len(X_test)):
     prediction = propagate(X_test[i], Weights)[-1]
-    print(f"Input: {X_test[i]}, Output: {prediction }")
-
     predicted_label = 1 if prediction >= 0.5 else 0
 
-    if predicted_label == 1:
-        vase_points.append(X_test[i])
-    else:
-        noise_points.append(X_test[i])
 
+        line = " ".join(map(str, X_test[i])) + f" {predicted_label}\n"
+        f_out.write(line)
+
+        if predicted_label == 1:
+            vase_points.append(X_test[i])
+        else:
+            noise_points.append(X_test[i])
 
 vase_points = np.array(vase_points)
 noise_points = np.array(noise_points)
